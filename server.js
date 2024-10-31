@@ -1,6 +1,6 @@
 const http = require('http');
 
-const port = process.env.PORT; // Use the port Azure provides
+const port = process.env.PORT || 8080; // Use the port Azure provides
 
 const server = http.createServer((req, res) => {
     if (req.url === '/' || req.url === '/hello') {
