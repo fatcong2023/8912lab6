@@ -1,19 +1,18 @@
 const http = require('http');
 
-const hostname = '0.0.0.0';
-const port = process.env.PORT || 443;
+const port = process.env.PORT; // Use the port Azure provides
 
 const server = http.createServer((req, res) => {
-  if (req.url === '/hello') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('hello world');
-  } else {
-    res.statusCode = 404;
-    res.end('Not Found');
-  }
-});
+    if (req.url === '/' || req.url === '/hello') {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('hello world');
+    } else {
+      res.statusCode = 404;
+      res.end('Not Found');
+    }
+  });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
